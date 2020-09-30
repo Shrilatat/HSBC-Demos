@@ -1,0 +1,15 @@
+{ "Results": {"total_computers": "2",
+			"computer": [
+						{
+							"Manufacturer":"Dell",
+							"Model":"Latitude",
+							"Price":"1650"
+						},
+						{
+							"Manufacturer":"Dell",
+							"Model":"Inspiron",
+							"Price":"1850"
+						}
+						]
+			}
+}

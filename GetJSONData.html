@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+<script language="javascript" type="text/javascript">
+	var xmlhttp;
+	function btngetjsondata_onclick() {
+		//getHTTPRequestObject();
+		xmlhttp = new XMLHttpRequest();
+		if (xmlhttp) {
+			xmlhttp.open("GET", "ResultsInJSON.txt", true);
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4){
+					if (xmlhttp.status == 200) {
+						//eval("var obj =" + xmlhttp.responseText);
+						var obj = JSON.parse(xmlhttp.responseText);
+						var displaytext = "";
+						for (var i = 0; i < obj.Results.computer.length; i++) {
+							displaytext += obj.Results.computer[i].Manufacturer
+									+ " "
+									+ obj.Results.computer[i].Model
+									+ ": $"
+									+ obj.Results.computer[i].Price
+									+ "<br>";
+						}
+						var lbl = document.getElementById("lblres");
+						lbl.innerHTML = displaytext;
+					} else
+						alert("oops...somethings wrong!");
+				}
+			}
+			xmlhttp.send(null);
+		} else
+			window.alert('No AJAX Support');
+	}
+	
+</script>
+</head>
+<body>
+
+	<h3 id="lblres">Result</h3>
+	<input type="button" id="btngetjsondata"
+		onclick="btngetjsondata_onclick()" value="Get Jason data">
+</body>
+</html>
